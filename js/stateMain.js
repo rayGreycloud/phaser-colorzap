@@ -103,7 +103,15 @@ var StateMain = {
   },
 
   update: function () {
-    // constant loop
+    var diffX = Math.abs(this.ring.x - this.ball.x);
+    var diffY = Math.abs(this.ring.y - this.ball.y);
 
+    if (diffX < 10 && diffY < 10) {
+      this.ball.body.velocity.setTo(0,0);
+
+      if (this.ball.frame == this.ring.frame) {
+        this.resetBall();
+      }
+    }
   }
 }
