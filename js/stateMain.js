@@ -15,7 +15,9 @@ var StateMain = {
 
   create: function () {
 
-    this.speed = 200;
+    this.speed = 160;
+    this.incSpeed = 20;
+    this.maxSpeed = 450;
     score = 0;
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -91,6 +93,12 @@ var StateMain = {
 
     var rot = game.physics.arcade.moveToXY(this.ball, this.ring.x, this.ring.y, this.speed);
     this.ball.rotation = rot;
+
+    this.speed += this.incSpeed;
+
+    if (this.speed > this.maxSpeed) {
+      this.speed = this.maxSpeed;
+    }
   },
 
   changeColor: function (target) {
