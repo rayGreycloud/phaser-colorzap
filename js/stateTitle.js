@@ -2,6 +2,7 @@ var StateTitle = {
   preload: function () {
     // load assets
     game.load.image('logo', '/images/title/gameLogo.png');
+    game.load.spritesheet('buttons', '/images/ui/buttons.png', 265, 75);
 
     // Check if mobile
     if (screen.width < 1500) {
@@ -13,7 +14,16 @@ var StateTitle = {
   create: function () {
     this.logo = game.add.sprite(game.world.centerX, 180, 'logo');
     this.logo.anchor.set(0.5, 0.5);
+
+    // Start button
+    this.btnStart = game.add.button(game.world.centerX, game.world.height - 150, 'buttons', this.startGame, this, 7, 6, 7);
+    this.btnStart.anchor.set(0.5, 0.5);
+
     this.setListeners();
+  },
+
+  startGame: function () {
+    game.state.start('StateMain');
   },
 
   setListeners: function () {
