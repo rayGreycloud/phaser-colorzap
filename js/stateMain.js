@@ -111,6 +111,8 @@ var StateMain = {
 
       if (this.ball.frame == this.ring.frame) {
         this.resetBall();
+      } else {
+        game.state.start('StateOver');
       }
     }
   }

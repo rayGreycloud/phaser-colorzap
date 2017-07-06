@@ -2,7 +2,7 @@ var StateTitle = {
   preload: function () {
     // load assets
     game.load.image('logo', '/images/title/gameLogo.png');
-    game.load.spritesheet('buttons', '/images/ui/buttons.png', 265, 75);
+    game.load.spritesheet('buttons', '/images/ui/buttons.png', 264, 74);
 
     // Check if mobile
     if (screen.width < 1500) {
