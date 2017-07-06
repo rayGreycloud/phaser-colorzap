@@ -42,10 +42,37 @@ var StateMain = {
     this.ring = game.add.image(game.world.centerX, this.blockGroup.y - 100, 'rings');
     this.ring.anchor.set(0.5, 0.5);
 
+    this.setListeners();
   },
 
-  changeColor(target) {
+  setListeners: function () {
+    game.input.onUp.add(this.resetRing, this);
+  },
+
+  changeColor: function (target) {
     console.log(target.name);
+    switch (target.name) {
+      case 'red':
+        this.ring.frame = 3;
+        break;
+
+      case 'blue':
+        this.ring.frame = 1;
+        break;
+
+      case 'green':
+        this.ring.frame = 2;
+        break;
+
+      case 'yellow':
+        this.ring.frame = 4;
+        break;
+    }
+  },
+
+  resetRing: function () {
+    // reset to white
+    this.ring.frame = 0;
   },
 
   update: function () {
