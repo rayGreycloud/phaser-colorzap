@@ -1,2 +1,2 @@
-## ColorZap
-# Phaser game from William Clarkson Udemy course
+# ColorZap
+## Phaser game from William Clarkson Udemy course
