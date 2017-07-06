@@ -8,6 +8,9 @@ var StateMain = {
 
     game.load.spritesheet('rings', '/images/main/rings.png', 60, 65, 5);
     game.load.spritesheet('balls', '/images/main/balls.png', 35, 35, 5);
+
+    game.load.audio('points', '/sounds/points.mp3');
+    game.load.audio('gameOver', '/sounds/gameOver.mp3');
   },
 
   create: function () {
@@ -16,6 +19,9 @@ var StateMain = {
     score = 0;
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    this.pointSound = game.add.audio('points');
+    this.gameOverSound = game.add.audio('gameOver');
 
     // Blocks
     var red = game.add.image(0, 0, 'red');
@@ -122,8 +128,10 @@ var StateMain = {
       if (this.ball.frame == this.ring.frame) {
         this.resetBall();
         score++;
+        this.pointSound.play();
         this.scoreText.text = score;
       } else {
+        this.gameOverSound.play();
         game.state.start('StateOver');
       }
     }
