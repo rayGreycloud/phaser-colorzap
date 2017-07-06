@@ -1,4 +1,5 @@
 var game;
+var score;
 
 window.onload = function () {
 
