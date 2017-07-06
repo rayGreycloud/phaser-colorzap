@@ -1,5 +1,6 @@
 var game;
 var score;
+var soundOn = true;
 
 window.onload = function () {
 
