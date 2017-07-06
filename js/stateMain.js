@@ -7,10 +7,16 @@ var StateMain = {
     game.load.image('yellow', 'images/main/blocks/yellow.png');
 
     game.load.spritesheet('rings', '/images/main/rings.png', 60, 65, 5);
+    game.load.spritesheet('balls', '/images/main/balls.png', 35, 35, 5);
   },
 
   create: function () {
 
+    this.speed = 200;
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    // Blocks
     var red = game.add.image(0, 0, 'red');
     var blue = game.add.image(0, 100, 'blue');
     var green = game.add.image(100, 0, 'green');
@@ -39,14 +45,35 @@ var StateMain = {
     this.blockGroup.x = game.world.centerX - this.blockGroup.width / 2;
     this.blockGroup.y = game.height - 250;
 
+    // Rings
     this.ring = game.add.image(game.world.centerX, this.blockGroup.y - 100, 'rings');
     this.ring.anchor.set(0.5, 0.5);
 
+    // Balls
+    this.ball = game.add.sprite(0, 0, 'balls');
+    this.ball.anchor.set(0.5, 0.5);
+    game.physics.arcade.enable(this.ball);
+
     this.setListeners();
+
+    this.resetBall();
   },
 
   setListeners: function () {
     game.input.onUp.add(this.resetRing, this);
+  },
+
+  resetBall: function () {
+    var color = game.rnd.integerInRange(0, 5);
+    var xx = game.rnd.integerInRange(0, game.world.width);
+    var yy = game.rnd.integerInRange(0, 100);
+
+    this.ball.frame = color;
+    this.ball.x = xx;
+    this.ball.y = yy;
+
+    var rot = game.physics.arcade.moveToXY(this.ball, this.ring.x, this.ring.y, this.speed);
+    this.ball.rotation = rot;
   },
 
   changeColor: function (target) {
